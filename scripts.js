@@ -60,3 +60,11 @@ function ChangeTool(toolClicked) {
     document.getElementById(toolClicked).className = 'selected';
     currentTool = toolClicked
 }
+
+function GetMousePosition(x,y) {
+    let canvasSizeData = canvas.getBoundingClientRect();
+    return {x: (x - canvasSize.Data.left) * (canvas.width / canvasSizeData.width),
+        y: (y - canvasSize.Data.top) * (canvas.height / canvasSizeData.height)};
+}
+
+function SaveCanvasImage
