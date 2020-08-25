@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Paint With JS</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="scripts.js"></script>
+        </head>
+    <body>
+        <div class="wrapper">
+            <div class="toolbar">
+                <a class="selected" href="#" id="save" onclick="SaveImage()">
+                    <img src="res/brush.png">
+                </a>
+                <a class="selected" href="#" id="brush" onclick="ChangeTool('brush')">
+                    <img src="res/brush.png">
+                </a>
+                <a class="selected" href="#" id="line" onclick="ChangeTool('line')">
+                    <img src="res/line.png">
+                </a>
+                <a class="selected" href="#" id="circle" onclick="ChangeTool('circle')">
+                    <img src="res/circle.png">
+                </a>
+                <a class="selected" href="#" id="ellipse" onclick="ChangeTool('ellipse')">
+                    <img src="res/ellipse.png">
+                </a>
+                <a class="selected" href="#" id="polygon" onclick="ChangeTool('polygon')">
+                    <img src="res/polygon.png">
+                </a>
+            </div><br>
+            
+        </div>
+    </body>
 </html>
