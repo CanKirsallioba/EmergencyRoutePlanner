@@ -2,7 +2,7 @@ let canvas;
 let contex;
 let savedImageData;
 let dragging = false;
-let strokeColor = 'black';
+let strokeColor = 'red';
 let fillColor = 'black';
 let line_Width = 2;
 let currentTool = 'brush';
