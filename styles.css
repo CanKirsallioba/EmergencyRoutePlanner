@@ -1,10 +1,10 @@
 .wrapper {
     max-width: 900px;
     margin: auto;
-    font-family: Arial;
+    font-family: "Arial";
 }
 
-.toolbar {
+.toolbar{
     width: 100%;
     background-color: white;
     overflow: auto;
@@ -16,29 +16,29 @@
     text-align: center;
     padding: 6px 5px;
     transition: all 0.5s ease;
-    color: white;
+    color: red;
 }
 
 .toolbar a:hover {
-    background-color: white;
+    background-color: grey;
 }
 
 .selected {
-    background-color: white;
+    background-color: lime;
 }
 
-#my-canvas {
+#my-canvas{
     width: 100%;
     border: 3px solid black;
 }
 
-#imageForDownload {
+#img-data-div{
     width: 100%;
     max-width: 900px;
-    height: 600px;
+    height: 200px;
 }
 
-.toolbar a image{
-    max-width: 100%;
-    height: auto;
+.toolbar a img{
+    max-width:100%;
+    height:auto;
 }
