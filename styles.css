@@ -43,9 +43,23 @@
     height:auto;
 }
 
-.colors .item {
+.colors button{
     box-sizing: border-box;
     height:auto;
     width:auto;
-    border:10px white solid;
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left;
 }
+
+.colors button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.colors:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
