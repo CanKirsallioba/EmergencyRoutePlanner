@@ -2,7 +2,7 @@ let canvas;
 let context;
 let savedImageData;
 let dragging = false;
-let strokeColor = 'red';
+let strokeColor = 'black';
 let fillColor = 'black';
 let line_Width = 2;
 let currentTool = 'brush';
@@ -107,6 +107,14 @@ function ChangeTool(toolClicked){
     document.getElementById("line").className = "";
     document.getElementById("rectangle").className = "";
     document.getElementById("circle").className = "";
+    document.getElementById("alarm").className = "";
+    document.getElementById("compass").className = "";
+    document.getElementById("exit").className = "";
+    document.getElementById("fire").className = "";
+    document.getElementById("medkit").className = "";
+    document.getElementById("meeting").className = "";
+    document.getElementById("telephone").className = "";
+    document.getElementById("youarehere").className = "";
     document.getElementById(toolClicked).className = "selected";
     currentTool = toolClicked;
 }
@@ -175,6 +183,16 @@ function drawRubberbandShape(loc){
         context.stroke();
     } else if(currentTool === "rectangle"){
         context.strokeRect(shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+    } else if(currentTool === "alarm"){
+        var img1 = document.getElementById("alarm");
+        context.drawImage(img1);
+    } else if(currentTool === "compass"){
+    } else if(currentTool === "exit"){
+    } else if(currentTool === "fire"){
+    } else if(currentTool === "medkit"){
+    } else if(currentTool === "meeting"){
+    } else if(currentTool === "telephone"){
+    } else if(currentTool === "youarehere"){
     } else if(currentTool === "circle"){
         let radius = shapeBoundingBox.width;
         context.beginPath();
