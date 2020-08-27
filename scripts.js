@@ -1,5 +1,5 @@
 let canvas;
-let contex;
+let context;
 let savedImageData;
 let dragging = false;
 let strokeColor = 'red';
@@ -38,6 +38,7 @@ class Location{
 }
 
 
+
 let shapeBoundingBox = new ShapeBoundingBox(0,0,0,0);
 let mousedown = new MouseDownPos(0,0);
 let loc = new Location(0,0);
@@ -46,12 +47,58 @@ document.addEventListener('DOMContentLoaded', setupCanvas);
 
 function setupCanvas(){
     canvas = document.getElementById('my-canvas');
-    contex = canvas.getContext('2d');
-    contex.strokeStyle = strokeColor;
-    contex.lineWidth = line_Width;
+    context = canvas.getContext('2d');
+    context.strokeStyle = strokeColor;
+    context.lineWidth = line_Width;
     canvas.addEventListener("mousedown", ReactToMouseDown);
     canvas.addEventListener("mousemove", ReactToMouseMove);
     canvas.addEventListener("mouseup", ReactToMouseUp);
+    document.getElementById("button1").onclick = function(){
+        strokeColor = '#ffffff';
+    }
+
+    document.getElementById("button2").onclick = function(){
+        strokeColor = '#000000';
+    }
+
+    document.getElementById("button3").onclick = function(){
+        strokeColor = '#ff0000';
+    }
+
+    document.getElementById("button4").onclick = function(){
+        strokeColor = '#00ff00';
+    }
+
+    document.getElementById("button5").onclick = function(){
+        strokeColor = '#0000ff';
+    }
+
+    document.getElementById("button6").onclick = function(){
+        strokeColor = '#00ffff';
+    }
+
+    document.getElementById("button7").onclick = function(){
+        strokeColor = '#ff00ff';
+    }
+
+    document.getElementById("button8").onclick = function(){
+        strokeColor = '#ffff00';
+    }
+
+    document.getElementById("button9").onclick = function(){
+        strokeColor = '#c46f0f';
+    }
+
+    document.getElementById("button10").onclick = function(){
+        strokeColor = '#fd8f27';
+    }
+    document.getElementById("button11").onclick = function(){
+        strokeColor = '#0099ff';
+    }
+
+    document.getElementById("button12").onclick = function(){
+        strokeColor = '#ff009d';
+    }
 }
 
 function ChangeTool(toolClicked){
@@ -71,11 +118,11 @@ function GetMousePosition(x,y){
 }
 
 function SaveCanvasImage(){
-    savedImageData = contex.getImageData(0,0,canvas.width,canvas.height);
+    savedImageData = context.getImageData(0,0,canvas.width,canvas.height);
 }
 
 function RedrawCanvasImage(){
-    contex.putImageData(savedImageData,0,0);
+    context.putImageData(savedImageData,0,0);
 }
 
 function UpdateRubberbandSizeData(loc){
@@ -117,22 +164,22 @@ function degreesToRadians(degrees){
 }
 
 function drawRubberbandShape(loc){
-    contex.strokeStyle = strokeColor;
-    contex.fillStyle = fillColor;
+    context.strokeStyle = strokeColor;
+    context.fillStyle = fillColor;
     if(currentTool === "brush"){
         DrawBrush();
     } else if(currentTool === "line"){
-        contex.beginPath();
-        contex.moveTo(mousedown.x, mousedown.y);
-        contex.lineTo(loc.x, loc.y);
-        contex.stroke();
+        context.beginPath();
+        context.moveTo(mousedown.x, mousedown.y);
+        context.lineTo(loc.x, loc.y);
+        context.stroke();
     } else if(currentTool === "rectangle"){
-        contex.strokeRect(shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+        context.strokeRect(shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "circle"){
         let radius = shapeBoundingBox.width;
-        contex.beginPath();
-        contex.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2);
-        contex.stroke();
+        context.beginPath();
+        context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2);
+        context.stroke();
     }
 }
 
@@ -151,15 +198,15 @@ function AddBrushPoint(x, y, mouseDown){
 
 function DrawBrush(){
     for(let i = 1; i < brushXPoints.length; i++){
-        contex.beginPath();
+        context.beginPath();
         if(brushDownPos[i]){
-            contex.moveTo(brushXPoints[i-1], brushYPoints[i-1]);
+            context.moveTo(brushXPoints[i-1], brushYPoints[i-1]);
         } else {
-            contex.moveTo(brushXPoints[i]-1, brushYPoints[i]);
+            context.moveTo(brushXPoints[i]-1, brushYPoints[i]);
         }
-        contex.lineTo(brushXPoints[i], brushYPoints[i]);
-        contex.closePath();
-        contex.stroke();
+        context.lineTo(brushXPoints[i], brushYPoints[i]);
+        context.closePath();
+        context.stroke();
     }
 }
 
@@ -212,8 +259,10 @@ function SaveImage(){
 }
 
 //Function for the color selection screen.
-function selectedColor(color) {
-    this.color = color;
-    this.contex.strokeStyle = this.color;
-}
+
+
+
+
+
+
 
