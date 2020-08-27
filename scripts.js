@@ -171,16 +171,6 @@ function degreesToRadians(degrees){
     return degrees * (Math.PI / 180);
 }
 
-
-
-function drawRubberbandShapev2(loc){
-    debugger;
-    let pctrId = currentTool.replace('Button','');
-    var pctr = document.getElementById(pctrId);
-    context.drawImage(pctr, 100,100);
-}
-
-
 function drawRubberbandShape(loc){
     context.strokeStyle = strokeColor;
     context.fillStyle = fillColor;
@@ -198,37 +188,30 @@ function drawRubberbandShape(loc){
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x, loc.y);
     } else if(currentTool === "compassButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
     } else if(currentTool === "exitButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
     } else if(currentTool === "fireButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
     } else if(currentTool === "medkitButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
     } else if(currentTool === "meetingButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
     } else if(currentTool === "telephoneButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
     } else if(currentTool === "youarehereButton"){
-        loc = GetMousePosition(e.clientX, e.clientY);
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
         context.drawImage(pctr, loc.x,loc.y);
@@ -242,9 +225,7 @@ function drawRubberbandShape(loc){
 
 function UpdateRubberbandOnMove(loc){
     UpdateRubberbandSizeData(loc);
-
     drawRubberbandShape(loc);
-    //drawRubberbandShapev2(loc);
 }
 
 
