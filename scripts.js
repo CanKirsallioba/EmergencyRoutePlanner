@@ -210,3 +210,10 @@ function SaveImage(){
     imageFile.setAttribute('download', 'image.png');
     imageFile.setAttribute('href', canvas.toDataURL());
 }
+
+//Function for the color selection screen.
+function selectedColor(color) {
+    this.color = color;
+    this.contex.strokeStyle = this.color;
+}
+

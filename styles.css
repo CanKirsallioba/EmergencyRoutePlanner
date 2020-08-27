@@ -43,9 +43,9 @@
     height:auto;
 }
 
-.colors .item .swatch{
+.colors .item {
     box-sizing: border-box;
-    width:100%;
-    height: 100%;
-    border:2px white solid;
+    height:auto;
+    width:auto;
+    border:10px white solid;
 }
