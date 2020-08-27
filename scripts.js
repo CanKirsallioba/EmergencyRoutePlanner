@@ -258,7 +258,6 @@ function SaveImage(){
     imageFile.setAttribute('href', canvas.toDataURL());
 }
 
-//Function for the color selection screen.
 
 
 
