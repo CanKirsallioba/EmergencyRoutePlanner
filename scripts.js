@@ -185,7 +185,7 @@ function drawRubberbandShape(loc){
         context.strokeRect(shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "alarm"){
         var img1 = document.getElementById("alarm");
-        context.drawImage(img1);
+        context.drawImage(img1, 100,100)
     } else if(currentTool === "compass"){
     } else if(currentTool === "exit"){
     } else if(currentTool === "fire"){
