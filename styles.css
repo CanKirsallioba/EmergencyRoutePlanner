@@ -47,16 +47,15 @@
     box-sizing: border-box;
     height:auto;
     width:auto;
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
+    padding: 10px 24px;
+    cursor: pointer;
     float: left;
 }
 
 .colors button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
+    border-right: none;
 }
 
-/* Clear floats (clearfix hack) */
 .colors:after {
     content: "";
     clear: both;
