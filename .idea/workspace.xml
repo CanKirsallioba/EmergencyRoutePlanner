@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a585dd0f-efeb-41d8-a7f8-c2a140d91785" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/PaintWithJS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PaintWithJS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
       <workItem from="1598422434142" duration="4386000" />
       <workItem from="1598427099739" duration="1195000" />
       <workItem from="1598511328810" duration="15283000" />
-      <workItem from="1598597463271" duration="3639000" />
+      <workItem from="1598597463271" duration="8748000" />
     </task>
     <servers />
   </component>

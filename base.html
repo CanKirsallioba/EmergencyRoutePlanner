@@ -8,6 +8,60 @@
     <script src="jscolor.js"></script>
     <script src="scripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        jQuery(init);
+        function init() {
+            var diagram = [];
+            var canvas = jQuery(".yourcanvas");
+            jQuery(".test").draggable({
+                helper: "clone"
+            });
+            canvas.droppable({
+                drop: function(event, ui) {
+                    var node = {
+                        _id: (new Date).getTime(),
+                        position: ui.helper.position()
+                    };
+                    if (ui.helper.hasClass("test")) {
+                        node.type = "test";
+                    } else {
+                        return;
+                    }
+                    diagram.push(node);
+                renderDiagram(diagram);
+                }
+            });
+
+            function renderDiagram(diagram) {
+                canvas.empty();
+                for (var d in diagram) {
+                    var node = diagram[d];
+                    var html = "";
+                    if (node.type === "test") {
+                        html = "<img src=\"res/alarm.png\">";
+                    }
+                    var dom = jQuery(html).css({
+                        "position": "absolute",
+                        "top": node.position.top,
+                        "left": node.position.left
+                    }).draggable({
+                        stop: function(event, ui) {
+                            var id = ui.helper.attr("id");
+                            for (var i in diagram) {
+                                if (diagram[i]._id === id) {
+                                    diagram[i].position.top = ui.position.top;
+                                    diagram[i].position.left = ui.position.left;
+                                }
+                            }
+                        }
+                    }).attr("id", node._id);
+                    canvas.append(dom);
+                }
+            }
+        }
+    </script>
 
 </head>
 <body>
@@ -20,7 +74,7 @@
         <a href="#" id="line" onclick="ChangeTool('line')"><img src="res/line2.png"></a>
         <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="res/rectangle2.png"></a>
         <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="res/circle2.png"></a>
-        <a href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
+        <a class="test" href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
         <a href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
         <a href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
         <a href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
@@ -29,7 +83,7 @@
         <a href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
         <a href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
     </div><br>
-    <canvas id="my-canvas" width="1000" height="600"></canvas>
+    <canvas class="yourcanvas" id="my-canvas" width="1000" height="600"></canvas>
     <div id="imageForDownload">
         <a href="#" id="imageForDownload2" download="plan.png">
             <button type="button">Download Plan</button>
