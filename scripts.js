@@ -3,6 +3,7 @@ let context;
 let savedImageData;
 let dragging = false;
 let strokeColor = 'black';
+let eraserColor = 'white';
 let fillColor = 'black';
 let line_Width = 2;
 let currentTool = 'brush';
@@ -176,6 +177,9 @@ function drawRubberbandShape(loc){
     context.fillStyle = fillColor;
     if(currentTool === "brush"){
         DrawBrush();
+    }
+    else if (currentTool === "eraser") {
+        DrawEraser();
     } else if(currentTool === "line"){
         context.beginPath();
         context.moveTo(mousedown.x, mousedown.y);
@@ -245,6 +249,23 @@ function DrawBrush(){
         }
         context.lineTo(brushXPoints[i], brushYPoints[i]);
         context.closePath();
+        context.lineWidth = 2;
+        context.stroke();
+    }
+}
+
+function DrawEraser() {
+    for(let i = 1; i < brushXPoints.length; i++){
+        context.beginPath();
+        if(brushDownPos[i]){
+            context.moveTo(brushXPoints[i-1], brushYPoints[i-1]);
+        } else {
+            context.moveTo(brushXPoints[i]-1, brushYPoints[i]);
+        }
+        context.lineTo(brushXPoints[i], brushYPoints[i]);
+        context.closePath();
+        context.strokeStyle = eraserColor;
+        context.lineWidth = 5;
         context.stroke();
     }
 }
