@@ -11,11 +11,11 @@
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <script>
-        jQuery(init);
+        $(init);
         function init() {
             var diagram = [];
-            var canvas = jQuery(".canvas");
-            jQuery(".drag").draggable({
+            var canvas = $(".canvas");
+            $(".drag").draggable({
                 helper: "clone"
             });
             canvas.droppable({
