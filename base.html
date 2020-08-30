@@ -14,7 +14,7 @@
         jQuery(init);
         function init() {
             var diagram = [];
-            var canvas = jQuery(".yourcanvas");
+            var canvas = jQuery(".canvas");
             jQuery(".test").draggable({
                 helper: "clone"
             });
@@ -24,13 +24,27 @@
                         _id: (new Date).getTime(),
                         position: ui.helper.position()
                     };
-                    if (ui.helper.hasClass("test")) {
-                        node.type = "test";
+                    if (ui.helper.hasClass("drag1")) {
+                        node.type = "<img src=\"res/alarm.png\">";
+                    } else if (ui.helper.hasClass("drag2")) {
+                        node.type = "<img src=\"res/compass.png\">";
+                    } else if (ui.helper.hasClass("drag3")) {
+                        node.type = "<img src=\"res/exit.png\">";
+                    } else if (ui.helper.hasClass("drag4")) {
+                        node.type = "<img src=\"res/fire.png\">";
+                    } else if (ui.helper.hasClass("drag5")) {
+                        node.type = "<img src=\"res/medkit.png\">";
+                    } else if (ui.helper.hasClass("drag6")) {
+                        node.type = "<img src=\"res/meeting.png\">";
+                    } else if (ui.helper.hasClass("drag7")) {
+                        node.type = "<img src=\"res/telephone.png\">";
+                    } else if (ui.helper.hasClass("drag8")) {
+                        node.type = "<img src=\"res/youarehere.png\">";
                     } else {
                         return;
                     }
                     diagram.push(node);
-                renderDiagram(diagram);
+                    renderDiagram(diagram);
                 }
             });
 
@@ -74,16 +88,16 @@
         <a href="#" id="line" onclick="ChangeTool('line')"><img src="res/line2.png"></a>
         <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="res/rectangle2.png"></a>
         <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="res/circle2.png"></a>
-        <a class="test" href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
-        <a href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
-        <a href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
-        <a href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
-        <a href="#" id="medkitButton" onclick="ChangeTool('medkitButton')"><img id="medkit" src="res/medkit.png"></a>
-        <a href="#" id="meetingButton" onclick="ChangeTool('meetingButton')"><img id="meeting" src="res/meeting.png"></a>
-        <a href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
-        <a href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
+        <a class="drag1" href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
+        <a class="drag2" href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
+        <a class="drag3" href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
+        <a class="drag4" href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
+        <a class="drag5" href="#" id="medkitButton" onclick="ChangeTool('medkitButton')"><img id="medkit" src="res/medkit.png"></a>
+        <a class="drag6" href="#" id="meetingButton" onclick="ChangeTool('meetingButton')"><img id="meeting" src="res/meeting.png"></a>
+        <a class="drag7" href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
+        <a class="drag8" href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
     </div><br>
-    <canvas class="yourcanvas" id="my-canvas" width="1000" height="600"></canvas>
+    <canvas class="canvas" id="my-canvas" width="1000" height="600"></canvas>
     <div id="imageForDownload">
         <a href="#" id="imageForDownload2" download="plan.png">
             <button type="button">Download Plan</button>
