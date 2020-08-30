@@ -53,21 +53,21 @@
                 for (var d in diagram) {
                     var node = diagram[d];
                     var html = "";
-                    if (node.type === "test") {
+                    if (node.type === "DRAG1") {
                         html = "<img src=\"res/alarm.png\">";
-                    } else if (ui.helper.hasClass("drag2")) {
+                    } else if (node.type === "DRAG2") {
                         html = "<img src=\"res/compass.png\">";
-                    } else if (ui.helper.hasClass("drag3")) {
+                    } else if (node.type === "DRAG3") {
                         html = "<img src=\"res/exit.png\">";
-                    } else if (ui.helper.hasClass("drag4")) {
+                    } else if (node.type === "DRAG4") {
                         html = "<img src=\"res/fire.png\">";
-                    } else if (ui.helper.hasClass("drag5")) {
+                    } else if (node.type === "DRAG5") {
                         html = "<img src=\"res/medkit.png\">";
-                    } else if (ui.helper.hasClass("drag6")) {
+                    } else if (node.type === "DRAG6") {
                         html = "<img src=\"res/meeting.png\">";
-                    } else if (ui.helper.hasClass("drag7")) {
+                    } else if (node.type === "DRAG7") {
                         html = "<img src=\"res/telephone.png\">";
-                    } else if (ui.helper.hasClass("drag8")) {
+                    } else if (node.type === "DRAG8") {
                         html = "<img src=\"res/youarehere.png\">";
                     }
 
