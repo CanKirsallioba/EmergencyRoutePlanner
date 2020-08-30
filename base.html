@@ -25,21 +25,21 @@
                         position: ui.helper.position()
                     };
                     if (ui.helper.hasClass("drag1")) {
-                        node.type = "<img src=\"res/alarm.png\">";
+                        node.type = "DRAG1";
                     } else if (ui.helper.hasClass("drag2")) {
-                        node.type = "<img src=\"res/compass.png\">";
+                        node.type = "DRAG2";
                     } else if (ui.helper.hasClass("drag3")) {
-                        node.type = "<img src=\"res/exit.png\">";
+                        node.type = "DRAG3";
                     } else if (ui.helper.hasClass("drag4")) {
-                        node.type = "<img src=\"res/fire.png\">";
+                        node.type = "DRAG4";
                     } else if (ui.helper.hasClass("drag5")) {
-                        node.type = "<img src=\"res/medkit.png\">";
+                        node.type = "DRAG5";
                     } else if (ui.helper.hasClass("drag6")) {
-                        node.type = "<img src=\"res/meeting.png\">";
+                        node.type = "DRAG6";
                     } else if (ui.helper.hasClass("drag7")) {
-                        node.type = "<img src=\"res/telephone.png\">";
+                        node.type = "DRAG7";
                     } else if (ui.helper.hasClass("drag8")) {
-                        node.type = "<img src=\"res/youarehere.png\">";
+                        node.type = "DRAG8";
                     } else {
                         return;
                     }
@@ -55,7 +55,31 @@
                     var html = "";
                     if (node.type === "test") {
                         html = "<img src=\"res/alarm.png\">";
+                    } else if (ui.helper.hasClass("drag2")) {
+                        node.type = "<img src=\"res/compass.png\">";
+                    } else if (ui.helper.hasClass("drag3")) {
+                        node.type = "<img src=\"res/exit.png\">";
+                    } else if (ui.helper.hasClass("drag4")) {
+                        node.type = "<img src=\"res/fire.png\">";
+                    } else if (ui.helper.hasClass("drag5")) {
+                        node.type = "<img src=\"res/medkit.png\">";
+                    } else if (ui.helper.hasClass("drag6")) {
+                        node.type = "<img src=\"res/meeting.png\">";
+                    } else if (ui.helper.hasClass("drag7")) {
+                        node.type = "<img src=\"res/telephone.png\">";
+                    } else if (ui.helper.hasClass("drag8")) {
+                        node.type = "<img src=\"res/youarehere.png\">";
                     }
+
+
+
+
+
+
+
+
+
+
                     var dom = jQuery(html).css({
                         "position": "absolute",
                         "top": node.position.top,
