@@ -9,6 +9,7 @@ let line_Width = 2;
 let currentTool = 'brush';
 let canvasWidth = 1000;
 let canvasHeight = 600;
+let angle = 0;
 
 let usingBrush = false;
 let brushXPoints = new Array();
@@ -100,6 +101,12 @@ function setupCanvas(){
     document.getElementById("button12").onclick = function(){
         strokeColor = '#ff009d';
     }
+
+
+    const button = document.getElementById('Rotate');
+    button.addEventListener("click", function(){
+        angle = angle + 90;
+    });
 }
 
 function ChangeTool(toolClicked){
@@ -192,7 +199,7 @@ function drawRubberbandShape(loc){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
        // context.drawImage(pctr, loc.x, loc.y);
-        drawRotatedImage(pctr,loc.x,loc.y,90)
+        drawRotatedImage(pctr,loc.x,loc.y,angle)
     } else if(currentTool === "compassButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
@@ -228,6 +235,8 @@ function drawRubberbandShape(loc){
         context.stroke();
     }
 }
+
+
 
 var TO_RADIANS = Math.PI/180;
 function drawRotatedImage(image, x, y, angle) {
