@@ -109,6 +109,7 @@ function ChangeTool(toolClicked){
     document.getElementById("line").className = "";
     document.getElementById("rectangle").className = "";
     document.getElementById("circle").className = "";
+
     document.getElementById("alarmButton").className = "";
     document.getElementById("compassButton").className = "";
     document.getElementById("exitButton").className = "";
@@ -191,35 +192,35 @@ function drawRubberbandShape(loc){
     } else if(currentTool === "alarmButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x, loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "compassButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "exitButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "fireButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "medkitButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "meetingButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "telephoneButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "youarehereButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x,loc.y);
+        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "circle"){
         let radius = shapeBoundingBox.width;
         context.beginPath();
