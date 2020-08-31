@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a585dd0f-efeb-41d8-a7f8-c2a140d91785" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +51,7 @@
       <workItem from="1598511328810" duration="15283000" />
       <workItem from="1598597463271" duration="8748000" />
       <workItem from="1598765079058" duration="5435000" />
-      <workItem from="1598853353565" duration="10819000" />
+      <workItem from="1598853353565" duration="14622000" />
     </task>
     <servers />
   </component>
@@ -58,10 +59,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="781" y="350" key="SettingsEditor" timestamp="1598853603744">
+    <state x="781" y="350" key="SettingsEditor" timestamp="1598867841598">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="781" y="350" key="SettingsEditor/0.0.2560.1410/-3840.-715.1536.834@0.0.2560.1410" timestamp="1598853603744" />
+    <state x="781" y="350" key="SettingsEditor/0.0.2560.1410/-3840.-715.1536.834@0.0.2560.1410" timestamp="1598867841598" />
     <state x="936" y="333" key="run.anything.popup" timestamp="1598525168978">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>

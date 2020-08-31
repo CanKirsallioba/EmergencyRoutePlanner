@@ -109,7 +109,6 @@ function ChangeTool(toolClicked){
     document.getElementById("line").className = "";
     document.getElementById("rectangle").className = "";
     document.getElementById("circle").className = "";
-
     document.getElementById("alarmButton").className = "";
     document.getElementById("compassButton").className = "";
     document.getElementById("exitButton").className = "";
@@ -192,7 +191,8 @@ function drawRubberbandShape(loc){
     } else if(currentTool === "alarmButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, loc.x, loc.y);
+       // context.drawImage(pctr, loc.x, loc.y);
+        drawRotatedImage(pctr,loc.x,loc.y,90)
     } else if(currentTool === "compassButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
@@ -228,6 +228,16 @@ function drawRubberbandShape(loc){
         context.stroke();
     }
 }
+
+var TO_RADIANS = Math.PI/180;
+function drawRotatedImage(image, x, y, angle) {
+    context.save();
+    context.translate(x, y);
+    context.rotate(angle * TO_RADIANS);
+    context.drawImage(image, -(image.width/2), -(image.height/2));
+    context.restore();
+}
+
 
 function UpdateRubberbandOnMove(loc){
     UpdateRubberbandSizeData(loc);
