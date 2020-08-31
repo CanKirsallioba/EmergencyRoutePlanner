@@ -192,7 +192,7 @@ function drawRubberbandShape(loc){
     } else if(currentTool === "alarmButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+        context.drawImage(pctr, loc.x, loc.y);
     } else if(currentTool === "compassButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
