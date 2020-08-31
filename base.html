@@ -11,84 +11,47 @@
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <script>
-        $(init);
-        function init() {
-            var diagram = [];
-            var canvas = $(".canvas");
-            $(".drag").draggable({
-                helper: "clone"
-            });
-            canvas.droppable({
-                drop: function(event, ui) {
-                    var node = {
-                        _id: (new Date).getTime(),
-                        position: ui.helper.position()
-                    };
-                    if (ui.helper.hasClass("drag1")) {
-                        node.type = "DRAG1";
-                    } else if (ui.helper.hasClass("drag2")) {
-                        node.type = "DRAG2";
-                    } else if (ui.helper.hasClass("drag3")) {
-                        node.type = "DRAG3";
-                    } else if (ui.helper.hasClass("drag4")) {
-                        node.type = "DRAG4";
-                    } else if (ui.helper.hasClass("drag5")) {
-                        node.type = "DRAG5";
-                    } else if (ui.helper.hasClass("drag6")) {
-                        node.type = "DRAG6";
-                    } else if (ui.helper.hasClass("drag7")) {
-                        node.type = "DRAG7";
-                    } else if (ui.helper.hasClass("drag8")) {
-                        node.type = "DRAG8";
-                    } else {
-                        return;
-                    }
-                    diagram.push(node);
-                    renderDiagram(diagram);
-                }
-            });
+        var $canvas = $("#my-canvas");
+        var Offset = $canvas.offset();
+        var offsetX = Offset.left;
+        var offsetY = Offset.top;
 
-            function renderDiagram(diagram) {
-                canvas.empty();
-                for (var d in diagram) {
-                    var node = diagram[d];
-                    var html = "";
-                    if (node.type === "DRAG1") {
-                        html = "<img src=\"res/alarm.png\">";
-                    } else if (node.type === "DRAG2") {
-                        html = "<img src=\"res/compass.png\">";
-                    } else if (node.type === "DRAG3") {
-                        html = "<img src=\"res/exit.png\">";
-                    } else if (node.type === "DRAG4") {
-                        html = "<img src=\"res/fire.png\">";
-                    } else if (node.type === "DRAG5") {
-                        html = "<img src=\"res/medkit.png\">";
-                    } else if (node.type === "DRAG6") {
-                        html = "<img src=\"res/meeting.png\">";
-                    } else if (node.type === "DRAG7") {
-                        html = "<img src=\"res/telephone.png\">";
-                    } else if (node.type === "DRAG8") {
-                        html = "<img src=\"res/youarehere.png\">";
-                    }
 
-                    var dom = jQuery(html).css({
-                        "position": "absolute",
-                        "top": node.position.top,
-                        "left": node.position.left
-                    }).draggable({
-                        stop: function(event, ui) {
-                            var id = ui.helper.attr("id");
-                            for (var i in diagram) {
-                                if (diagram[i]._id === id) {
-                                    diagram[i].position.top = ui.position.top;
-                                    diagram[i].position.left = ui.position.left;
-                                }
-                            }
-                        }
-                    }).attr("id", node._id);
-                    canvas.append(dom);
-                }
-            }
+        // select all .tool's
+        var $tools = $(".drag");
+
+
+        // make all .tool's draggable
+        $tools.draggable({
+            helper: 'clone',
+        });
+
+
+        // assign each .tool its index in $tools
+        $tools.each(function (index, element) {
+            $(this).data("toolsIndex", index);
+        });
+
+
+        // make the canvas a dropzone
+        $canvas.droppable({
+            drop: dragDrop,
+        });
+
+
+        // handle a drop into the canvas
+        function dragDrop(e, ui) {
+
+            // get the drop point (be sure to adjust for border)
+            var x = parseInt(ui.offset.left - offsetX) - 1;
+            var y = parseInt(ui.offset.top - offsetY);
+
+            // get the drop payload (here the payload is the $tools index)
+            var theIndex = ui.draggable.data("toolsIndex");
+
+            // drawImage at the drop point using the dropped image
+            context.drawImage($tools[theIndex], x, y, 32, 32);
+
         }
     </script>
 
@@ -103,16 +66,18 @@
         <a href="#" id="line" onclick="ChangeTool('line')"><img src="res/line2.png"></a>
         <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="res/rectangle2.png"></a>
         <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="res/circle2.png"></a>
-        <a class="drag drag1" href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
-        <a class="drag drag2" href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
-        <a class="drag drag3" href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
-        <a class="drag drag4" href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
-        <a class="drag drag5" href="#" id="medkitButton" onclick="ChangeTool('medkitButton')"><img id="medkit" src="res/medkit.png"></a>
-        <a class="drag drag6" href="#" id="meetingButton" onclick="ChangeTool('meetingButton')"><img id="meeting" src="res/meeting.png"></a>
-        <a class="drag drag7" href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
-        <a class="drag drag8" href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
+        <a class="drag" href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
+        <a class="drag" href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
+        <a class="drag" href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
+        <a class="drag" href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
+        <a class="drag" href="#" id="medkitButton" onclick="ChangeTool('medkitButton')"><img id="medkit" src="res/medkit.png"></a>
+        <a class="drag" href="#" id="meetingButton" onclick="ChangeTool('meetingButton')"><img id="meeting" src="res/meeting.png"></a>
+        <a class="drag" href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
+        <a class="drag" href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
     </div><br>
+
     <canvas class="canvas" id="my-canvas" width="1000" height="600"></canvas>
+
     <div id="imageForDownload">
         <a href="#" id="imageForDownload2" download="plan.png">
             <button type="button">Download Plan</button>
