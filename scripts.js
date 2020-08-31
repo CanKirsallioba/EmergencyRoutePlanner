@@ -271,7 +271,6 @@ function DrawEraser() {
     context.lineTo(currentPos.x, currentPos.y);
     context.lineCap = 'round';
     context.lineJoin = 'round';
-    context.lineWidth = 8;
     context.strokeStyle = eraserColor;
     context.stroke();
 }
