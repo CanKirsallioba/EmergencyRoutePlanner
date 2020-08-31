@@ -105,6 +105,7 @@ function setupCanvas(){
 function ChangeTool(toolClicked){
     document.getElementById("save").className = "";
     document.getElementById("brush").className = "";
+    document.getElementById("eraser").className = "";
     document.getElementById("line").className = "";
     document.getElementById("rectangle").className = "";
     document.getElementById("circle").className = "";
@@ -176,10 +177,10 @@ function drawRubberbandShape(loc){
     context.strokeStyle = strokeColor;
     context.fillStyle = fillColor;
     if(currentTool === "brush"){
-        DrawBrush();
+        //DrawBrush();
     }
     else if (currentTool === "eraser") {
-        DrawEraser();
+        //DrawEraser();
     } else if(currentTool === "line"){
         context.beginPath();
         context.moveTo(mousedown.x, mousedown.y);
@@ -240,62 +241,69 @@ function AddBrushPoint(x, y, mouseDown){
 }
 
 function DrawBrush(){
-    for(let i = 1; i < brushXPoints.length; i++){
-        context.beginPath();
-        if(brushDownPos[i]){
-            context.moveTo(brushXPoints[i-1], brushYPoints[i-1]);
-        } else {
-            context.moveTo(brushXPoints[i]-1, brushYPoints[i]);
-        }
-        context.lineTo(brushXPoints[i], brushYPoints[i]);
-        context.closePath();
-        context.lineWidth = 2;
-        context.stroke();
-    }
+    context.lineTo(currentPos.x, currentPos.y);
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    context.stroke();
 }
 
 function DrawEraser() {
-    for(let i = 1; i < brushXPoints.length; i++){
-        context.beginPath();
-        if(brushDownPos[i]){
-            context.moveTo(brushXPoints[i-1], brushYPoints[i-1]);
-        } else {
-            context.moveTo(brushXPoints[i]-1, brushYPoints[i]);
-        }
-        context.lineTo(brushXPoints[i], brushYPoints[i]);
-        context.closePath();
-        context.strokeStyle = eraserColor;
-        context.lineWidth = 5;
-        context.stroke();
-    }
+    context.lineTo(currentPos.x, currentPos.y);
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    context.lineWidth = 8;
+    context.strokeStyle = eraserColor;
+    context.stroke();
 }
 
 function ReactToMouseDown(e){
     canvas.style.cursor = "crosshair";
-    // Store location
     loc = GetMousePosition(e.clientX, e.clientY);
+    startPos = GetMousePosition(e.clientX, e.clientY);
     SaveCanvasImage();
     mousedown.x = loc.x;
     mousedown.y = loc.y;
     dragging = true;
 
     if(currentTool === 'brush'){
+
         usingBrush = true;
         AddBrushPoint(loc.x, loc.y);
+
+        context.strokeStyle = strokeColor;
+        context.beginPath();
+        context.moveTo(startPos.x, startPos.y);
+
     }
+
+    if (currentTool === 'eraser') {
+        context.strokeStyle = eraserColor;
+        context.beginPath();
+        context.moveTo(startPos.x, startPos.y);
+    }
+
 };
 
 function ReactToMouseMove(e){
+    currentPos = GetMousePosition(e.clientX, e.clientY);
+
     canvas.style.cursor = "crosshair";
     loc = GetMousePosition(e.clientX, e.clientY);
 
-    if(currentTool === 'brush' && dragging && usingBrush){
+    if(currentTool === 'brush' && dragging && usingBrush) {
+
         if(loc.x > 0 && loc.x < canvasWidth && loc.y > 0 && loc.y < canvasHeight){
             AddBrushPoint(loc.x, loc.y, true);
         }
+
         RedrawCanvasImage();
         DrawBrush();
-    } else {
+    }
+    else if (currentTool === 'eraser') {
+        RedrawCanvasImage();
+        DrawEraser();
+    }
+    else {
         if(dragging){
             RedrawCanvasImage();
             UpdateRubberbandOnMove(loc);
@@ -306,7 +314,7 @@ function ReactToMouseMove(e){
 function ReactToMouseUp(e){
     canvas.style.cursor = "default";
     loc = GetMousePosition(e.clientX, e.clientY);
-    RedrawCanvasImage();
+    //RedrawCanvasImage();
     UpdateRubberbandOnMove(loc);
     dragging = false;
     usingBrush = false;
