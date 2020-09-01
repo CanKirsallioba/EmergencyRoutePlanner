@@ -107,6 +107,16 @@ function setupCanvas(){
     button.addEventListener("click", function(){
         angle = angle + 90;
     });
+
+
+    if (currentTool === 'alarm') {
+        let pctrId = currentTool.replace('Button','');
+        $( function() {
+            $( pctrId ).draggable();
+        } );
+    }
+
+
 }
 
 function ChangeTool(toolClicked){
@@ -161,25 +171,6 @@ function UpdateRubberbandSizeData(loc){
     }
 }
 
-function getAngleUsingXAndY(mouselocX, mouselocY){
-    let adjacent = mousedown.x - mouselocX;
-    let opposite = mousedown.y - mouselocY;
-
-    return radiansToDegrees(Math.atan2(opposite, adjacent));
-}
-
-function radiansToDegrees(rad){
-    if(rad < 0){
-        return (360.0 + (rad * (180 / Math.PI))).toFixed(2);
-    } else {
-        return (rad * (180 / Math.PI)).toFixed(2);
-    }
-}
-
-function degreesToRadians(degrees){
-    return degrees * (Math.PI / 180);
-}
-
 function drawRubberbandShape(loc){
     context.strokeStyle = strokeColor;
     context.fillStyle = fillColor;
@@ -196,38 +187,39 @@ function drawRubberbandShape(loc){
     } else if(currentTool === "rectangle"){
         context.strokeRect(shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
     } else if(currentTool === "alarmButton"){
+
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
        // context.drawImage(pctr, loc.x, loc.y);
-        drawRotatedImage(pctr,loc.x,loc.y,angle)
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "compassButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "exitButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "fireButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "medkitButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "meetingButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "telephoneButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "youarehereButton"){
         let pctrId = currentTool.replace('Button','');
-        var pctr = document.getElementById(pctrId);
-        context.drawImage(pctr, shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+         pctr = document.getElementById(pctrId);
+        drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "circle"){
         let radius = shapeBoundingBox.width;
         context.beginPath();
