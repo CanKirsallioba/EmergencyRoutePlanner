@@ -21,7 +21,7 @@ let brushDownPos = new Array();
 /*
 This class is used for all the details about measures and shapes.
  */
-class ShapeBoundingBox{
+class SpecialShapeSurroundingBox{
     constructor(left, top, width, height) {
         this.left = left;
         this.top = top;
@@ -54,7 +54,7 @@ class Location{
 /*
 Creation of the classes mentioned above, these will be used throughout the programme.
  */
-let shapeBoundingBox = new ShapeBoundingBox(0,0,0,0);
+let specialShapeSurroundingBox = new SpecialShapeSurroundingBox(0,0,0,0);
 let mousedown = new MouseDownPos(0,0);
 let loc = new Location(0,0);
 
@@ -186,26 +186,26 @@ This function is used for updating the shape sizes such as rectangle line and ci
 they are first put to the canvas
  */
 function updateSpecialShapeSize(loc){
-    shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
-    shapeBoundingBox.height = Math.abs(loc.y - mousedown.y);
+    specialShapeSurroundingBox.width = Math.abs(loc.x - mousedown.x);
+    specialShapeSurroundingBox.height = Math.abs(loc.y - mousedown.y);
 
     if(loc.x > mousedown.x){
 
-        shapeBoundingBox.left = mousedown.x;
+        specialShapeSurroundingBox.left = mousedown.x;
     } else {
 
-        shapeBoundingBox.left = loc.x;
+        specialShapeSurroundingBox.left = loc.x;
     }
 
     if(loc.y > mousedown.y){
-        shapeBoundingBox.top = mousedown.y;
+        specialShapeSurroundingBox.top = mousedown.y;
     } else {
-        shapeBoundingBox.top = loc.y;
+        specialShapeSurroundingBox.top = loc.y;
     }
 }
 
 /*
-
+This function handles drawing shapes and images to the canvas, calls the relevant functions.
  */
 function drawSpecialShape(loc){
     context.strokeStyle = strokeColor;
@@ -221,7 +221,7 @@ function drawSpecialShape(loc){
         context.lineTo(loc.x, loc.y);
         context.stroke();
     } else if(currentTool === "rectangle"){
-        context.strokeRect(shapeBoundingBox.left, shapeBoundingBox.top, shapeBoundingBox.width, shapeBoundingBox.height);
+        context.strokeRect(specialShapeSurroundingBox.left, specialShapeSurroundingBox.top, specialShapeSurroundingBox.width, specialShapeSurroundingBox.height);
     } else if(currentTool === "alarmButton"){
 
         let pctrId = currentTool.replace('Button','');
@@ -257,7 +257,7 @@ function drawSpecialShape(loc){
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
     } else if(currentTool === "circle"){
-        let radius = shapeBoundingBox.width;
+        let radius = specialShapeSurroundingBox.width;
         context.beginPath();
         context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2);
         context.stroke();
