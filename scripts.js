@@ -182,9 +182,10 @@ function RedrawCanvasImage(){
 }
 
 /*
-
+This function is used for updating the shape sizes such as rectangle line and circle when
+they are first put to the canvas
  */
-function UpdateRubberbandSizeData(loc){
+function updateSpecialShapeSize(loc){
     shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
     shapeBoundingBox.height = Math.abs(loc.y - mousedown.y);
 
@@ -206,7 +207,7 @@ function UpdateRubberbandSizeData(loc){
 /*
 
  */
-function drawRubberbandShape(loc){
+function drawSpecialShape(loc){
     context.strokeStyle = strokeColor;
     context.fillStyle = fillColor;
     if(currentTool === "brush"){
@@ -279,9 +280,9 @@ function drawRotatedImage(image, x, y, angle) {
 /*
 
  */
-function UpdateRubberbandOnMove(loc){
-    UpdateRubberbandSizeData(loc);
-    drawRubberbandShape(loc);
+function updateSpecialShapeOnMove(loc){
+    updateSpecialShapeSize(loc);
+    drawSpecialShape(loc);
 }
 
 /*
@@ -370,7 +371,7 @@ function ReactToMouseMove(e){
     else {
         if(dragging){
             RedrawCanvasImage();
-            UpdateRubberbandOnMove(loc);
+            updateSpecialShapeOnMove(loc);
         }
     }
 };
@@ -382,7 +383,7 @@ function ReactToMouseUp(e){
     canvas.style.cursor = "default";
     loc = GetMousePosition(e.clientX, e.clientY);
     //RedrawCanvasImage();
-    UpdateRubberbandOnMove(loc);
+    updateSpecialShapeOnMove(loc);
     dragging = false;
     usingBrush = false;
 }
