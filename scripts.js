@@ -321,7 +321,7 @@ function drawWithBrush(){
 }
 
 /*
-
+This function is basically the same with the brush one but it draws white
  */
 function eraseWithEraser() {
     context.lineTo(currentPos.x, currentPos.y);
@@ -332,7 +332,7 @@ function eraseWithEraser() {
 }
 
 /*
-
+This function is for actions taken by the mouse when it is clicked continuously
  */
 function reactToMouseDown(e){
     canvas.style.cursor = "crosshair";
@@ -360,10 +360,10 @@ function reactToMouseDown(e){
         context.moveTo(startPos.x, startPos.y);
     }
 
-};
+}
 
 /*
-
+This function is for actions held when the mouse is on the move
  */
 function reactToMouseMove(e){
     currentPos = getMousePosition(e.clientX, e.clientY);
@@ -390,22 +390,21 @@ function reactToMouseMove(e){
             updateSpecialShapeOnMove(loc);
         }
     }
-};
+}
 
 /*
-
+This function is for the action held when the mouse button is not clicked (post-click)
  */
 function reactToMouseUp(e){
     canvas.style.cursor = "default";
     loc = getMousePosition(e.clientX, e.clientY);
-    //redrawCanvasImage();
     updateSpecialShapeOnMove(loc);
     dragging = false;
     usingBrush = false;
 }
 
 /*
-
+This function is used for the download plan feature (will be updated for the 64 bit download)
  */
 function saveImage(){
     var imageFile = document.getElementById("imageForDownload");
