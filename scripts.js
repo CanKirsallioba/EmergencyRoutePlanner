@@ -135,7 +135,8 @@ function setupCanvas(){
 }
 
 /*
-
+This function enables tool selection by accessing the tools with their id's.
+If new tools are added or old ones are removed, the .html file must be changed as well.
  */
 function ChangeTool(toolClicked){
     document.getElementById("save").className = "";
@@ -156,7 +157,9 @@ function ChangeTool(toolClicked){
     currentTool = toolClicked;
 }
 
-
+/*
+This function returns the mouse position in x,y format.
+ */
 function GetMousePosition(x,y){
     let canvasSizeData = canvas.getBoundingClientRect();
     return { x: (x - canvasSizeData.left) * (canvas.width  / canvasSizeData.width),
@@ -164,14 +167,23 @@ function GetMousePosition(x,y){
     };
 }
 
+/*
+
+ */
 function SaveCanvasImage(){
     savedImageData = context.getImageData(0,0,canvas.width,canvas.height);
 }
 
+/*
+
+ */
 function RedrawCanvasImage(){
     context.putImageData(savedImageData,0,0);
 }
 
+/*
+
+ */
 function UpdateRubberbandSizeData(loc){
     shapeBoundingBox.width = Math.abs(loc.x - mousedown.x);
     shapeBoundingBox.height = Math.abs(loc.y - mousedown.y);
@@ -191,6 +203,9 @@ function UpdateRubberbandSizeData(loc){
     }
 }
 
+/*
+
+ */
 function drawRubberbandShape(loc){
     context.strokeStyle = strokeColor;
     context.fillStyle = fillColor;
@@ -249,7 +264,9 @@ function drawRubberbandShape(loc){
 }
 
 
+/*
 
+ */
 var TO_RADIANS = Math.PI/180;
 function drawRotatedImage(image, x, y, angle) {
     context.save();
@@ -259,19 +276,26 @@ function drawRotatedImage(image, x, y, angle) {
     context.restore();
 }
 
+/*
 
+ */
 function UpdateRubberbandOnMove(loc){
     UpdateRubberbandSizeData(loc);
     drawRubberbandShape(loc);
 }
 
+/*
 
+ */
 function AddBrushPoint(x, y, mouseDown){
     brushXPoints.push(x);
     brushYPoints.push(y);
     brushDownPos.push(mouseDown);
 }
 
+/*
+
+ */
 function DrawBrush(){
     context.lineTo(currentPos.x, currentPos.y);
     context.lineCap = 'round';
@@ -279,6 +303,9 @@ function DrawBrush(){
     context.stroke();
 }
 
+/*
+
+ */
 function DrawEraser() {
     context.lineTo(currentPos.x, currentPos.y);
     context.lineCap = 'round';
@@ -287,6 +314,9 @@ function DrawEraser() {
     context.stroke();
 }
 
+/*
+
+ */
 function ReactToMouseDown(e){
     canvas.style.cursor = "crosshair";
     loc = GetMousePosition(e.clientX, e.clientY);
@@ -315,6 +345,9 @@ function ReactToMouseDown(e){
 
 };
 
+/*
+
+ */
 function ReactToMouseMove(e){
     currentPos = GetMousePosition(e.clientX, e.clientY);
 
@@ -342,6 +375,9 @@ function ReactToMouseMove(e){
     }
 };
 
+/*
+
+ */
 function ReactToMouseUp(e){
     canvas.style.cursor = "default";
     loc = GetMousePosition(e.clientX, e.clientY);
@@ -351,8 +387,11 @@ function ReactToMouseUp(e){
     usingBrush = false;
 }
 
+/*
+
+ */
 function SaveImage(){
-    var imageFile = document.getElementById("img-file");
+    var imageFile = document.getElementById("imageForDownload");
     imageFile.setAttribute('download', 'image.png');
     imageFile.setAttribute('href', canvas.toDataURL());
 }
