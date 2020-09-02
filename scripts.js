@@ -73,9 +73,9 @@ function setupCanvas(){
     context.lineWidth = line_Width;
 
     //Add the event listeners for the mouse moves
-    canvas.addEventListener("mousedown", ReactToMouseDown);
-    canvas.addEventListener("mousemove", ReactToMouseMove);
-    canvas.addEventListener("mouseup", ReactToMouseUp);
+    canvas.addEventListener("mousedown", reactToMouseDown);
+    canvas.addEventListener("mousemove", reactToMouseMove);
+    canvas.addEventListener("mouseup", reactToMouseUp);
 
     //The following 12 buttons are the buttons from the colour palette
     //If the colours are to be changed in the future, one must also change
@@ -138,7 +138,7 @@ function setupCanvas(){
 This function enables tool selection by accessing the tools with their id's.
 If new tools are added or old ones are removed, the .html file must be changed as well.
  */
-function ChangeTool(toolClicked){
+function changeTool(toolClicked){
     document.getElementById("save").className = "";
     document.getElementById("brush").className = "";
     document.getElementById("eraser").className = "";
@@ -160,7 +160,7 @@ function ChangeTool(toolClicked){
 /*
 This function returns the mouse position in x,y format.
  */
-function GetMousePosition(x,y){
+function getMousePosition(x,y){
     let canvasSizeData = canvas.getBoundingClientRect();
     return { x: (x - canvasSizeData.left) * (canvas.width  / canvasSizeData.width),
         y: (y - canvasSizeData.top)  * (canvas.height / canvasSizeData.height)
@@ -170,14 +170,14 @@ function GetMousePosition(x,y){
 /*
 This function saves the current state of the canvas.
  */
-function SaveCanvasImage(){
+function saveCanvasImage(){
     savedImageData = context.getImageData(0,0,canvas.width,canvas.height);
 }
 
 /*
 This function updates the canvas.
  */
-function RedrawCanvasImage(){
+function redrawCanvasImage(){
     context.putImageData(savedImageData,0,0);
 }
 
@@ -208,55 +208,71 @@ function updateSpecialShapeSize(loc){
 This function handles drawing shapes and images to the canvas, calls the relevant functions.
  */
 function drawSpecialShape(loc){
+    //Set the colours
     context.strokeStyle = strokeColor;
     context.fillStyle = fillColor;
-    if(currentTool === "brush"){
-        //DrawBrush();
-    }
-    else if (currentTool === "eraser") {
-        //DrawEraser();
-    } else if(currentTool === "line"){
+
+    if(currentTool === "line"){
         context.beginPath();
         context.moveTo(mousedown.x, mousedown.y);
         context.lineTo(loc.x, loc.y);
         context.stroke();
-    } else if(currentTool === "rectangle"){
-        context.strokeRect(specialShapeSurroundingBox.left, specialShapeSurroundingBox.top, specialShapeSurroundingBox.width, specialShapeSurroundingBox.height);
-    } else if(currentTool === "alarmButton"){
+    }
 
+    else if(currentTool === "rectangle"){
+        context.strokeRect(specialShapeSurroundingBox.left, specialShapeSurroundingBox.top, specialShapeSurroundingBox.width, specialShapeSurroundingBox.height);
+    }
+
+    else if(currentTool === "alarmButton"){
         let pctrId = currentTool.replace('Button','');
         var pctr = document.getElementById(pctrId);
        // context.drawImage(pctr, loc.x, loc.y);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "compassButton"){
+    }
+
+    else if(currentTool === "compassButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "exitButton"){
+    }
+
+    else if(currentTool === "exitButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "fireButton"){
+    }
+
+    else if(currentTool === "fireButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "medkitButton"){
+    }
+
+    else if(currentTool === "medkitButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "meetingButton"){
+    }
+
+    else if(currentTool === "meetingButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "telephoneButton"){
+    }
+
+    else if(currentTool === "telephoneButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "youarehereButton"){
+    }
+
+    else if(currentTool === "youarehereButton"){
         let pctrId = currentTool.replace('Button','');
          pctr = document.getElementById(pctrId);
         drawRotatedImage(pctr,loc.x,loc.y,angle);
-    } else if(currentTool === "circle"){
+    }
+
+    else if(currentTool === "circle"){
         let radius = specialShapeSurroundingBox.width;
         context.beginPath();
         context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2);
@@ -266,7 +282,7 @@ function drawSpecialShape(loc){
 
 
 /*
-
+This function allows the images to rotate in the given angle and coordinates.
  */
 var TO_RADIANS = Math.PI/180;
 function drawRotatedImage(image, x, y, angle) {
@@ -278,7 +294,7 @@ function drawRotatedImage(image, x, y, angle) {
 }
 
 /*
-
+This functions sole purpose is to keep the shape updating on the move
  */
 function updateSpecialShapeOnMove(loc){
     updateSpecialShapeSize(loc);
@@ -286,18 +302,18 @@ function updateSpecialShapeOnMove(loc){
 }
 
 /*
-
+This function adds the coordinates to the given brushXPoints, brushYPoints and brushDownPos
  */
-function AddBrushPoint(x, y, mouseDown){
+function addBrushPoint(x, y, mouseDown){
     brushXPoints.push(x);
     brushYPoints.push(y);
     brushDownPos.push(mouseDown);
 }
 
 /*
-
+This function sets the environment for stroking
  */
-function DrawBrush(){
+function drawWithBrush(){
     context.lineTo(currentPos.x, currentPos.y);
     context.lineCap = 'round';
     context.lineJoin = 'round';
@@ -307,7 +323,7 @@ function DrawBrush(){
 /*
 
  */
-function DrawEraser() {
+function eraseWithEraser() {
     context.lineTo(currentPos.x, currentPos.y);
     context.lineCap = 'round';
     context.lineJoin = 'round';
@@ -318,11 +334,11 @@ function DrawEraser() {
 /*
 
  */
-function ReactToMouseDown(e){
+function reactToMouseDown(e){
     canvas.style.cursor = "crosshair";
-    loc = GetMousePosition(e.clientX, e.clientY);
-    startPos = GetMousePosition(e.clientX, e.clientY);
-    SaveCanvasImage();
+    loc = getMousePosition(e.clientX, e.clientY);
+    startPos = getMousePosition(e.clientX, e.clientY);
+    saveCanvasImage();
     mousedown.x = loc.x;
     mousedown.y = loc.y;
     dragging = true;
@@ -330,7 +346,7 @@ function ReactToMouseDown(e){
     if(currentTool === 'brush'){
 
         usingBrush = true;
-        AddBrushPoint(loc.x, loc.y);
+        addBrushPoint(loc.x, loc.y);
 
         context.strokeStyle = strokeColor;
         context.beginPath();
@@ -349,28 +365,28 @@ function ReactToMouseDown(e){
 /*
 
  */
-function ReactToMouseMove(e){
-    currentPos = GetMousePosition(e.clientX, e.clientY);
+function reactToMouseMove(e){
+    currentPos = getMousePosition(e.clientX, e.clientY);
 
     canvas.style.cursor = "crosshair";
-    loc = GetMousePosition(e.clientX, e.clientY);
+    loc = getMousePosition(e.clientX, e.clientY);
 
     if(currentTool === 'brush' && dragging && usingBrush) {
 
         if(loc.x > 0 && loc.x < canvasWidth && loc.y > 0 && loc.y < canvasHeight){
-            AddBrushPoint(loc.x, loc.y, true);
+            addBrushPoint(loc.x, loc.y, true);
         }
 
-        RedrawCanvasImage();
-        DrawBrush();
+        redrawCanvasImage();
+        drawWithBrush();
     }
     else if (currentTool === 'eraser') {
-        RedrawCanvasImage();
-        DrawEraser();
+        redrawCanvasImage();
+        eraseWithEraser();
     }
     else {
         if(dragging){
-            RedrawCanvasImage();
+            redrawCanvasImage();
             updateSpecialShapeOnMove(loc);
         }
     }
@@ -379,10 +395,10 @@ function ReactToMouseMove(e){
 /*
 
  */
-function ReactToMouseUp(e){
+function reactToMouseUp(e){
     canvas.style.cursor = "default";
-    loc = GetMousePosition(e.clientX, e.clientY);
-    //RedrawCanvasImage();
+    loc = getMousePosition(e.clientX, e.clientY);
+    //redrawCanvasImage();
     updateSpecialShapeOnMove(loc);
     dragging = false;
     usingBrush = false;
@@ -391,7 +407,7 @@ function ReactToMouseUp(e){
 /*
 
  */
-function SaveImage(){
+function saveImage(){
     var imageFile = document.getElementById("imageForDownload");
     imageFile.setAttribute('download', 'image.png');
     imageFile.setAttribute('href', canvas.toDataURL());
