@@ -168,14 +168,14 @@ function GetMousePosition(x,y){
 }
 
 /*
-
+This function saves the current state of the canvas.
  */
 function SaveCanvasImage(){
     savedImageData = context.getImageData(0,0,canvas.width,canvas.height);
 }
 
 /*
-
+This function updates the canvas.
  */
 function RedrawCanvasImage(){
     context.putImageData(savedImageData,0,0);
