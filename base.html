@@ -1,173 +1,105 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width = device-width, initial-scale = 1">
-    <title>JavaScript Paint App</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="jscolor.js"></script>
-    <script src="scripts.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
-<!---
-    <script>
-        $(init);
-        function init() {
-            var diagram = [];
-            var canvas = $(".canvas");
-            $(".drag").draggable({
-                helper: "clone"
-            });
-            canvas.droppable({
-                drop: function(event, ui) {
-                    var node = {
-                        _id: (new Date).getTime(),
-                        position: ui.helper.position()
-                    };
-                    if (ui.helper.hasClass("drag1")) {
-                        node.type = "DRAG1";
-                    } else if (ui.helper.hasClass("drag2")) {
-                        node.type = "DRAG2";
-                    } else if (ui.helper.hasClass("drag3")) {
-                        node.type = "DRAG3";
-                    } else if (ui.helper.hasClass("drag4")) {
-                        node.type = "DRAG4";
-                    } else if (ui.helper.hasClass("drag5")) {
-                        node.type = "DRAG5";
-                    } else if (ui.helper.hasClass("drag6")) {
-                        node.type = "DRAG6";
-                    } else if (ui.helper.hasClass("drag7")) {
-                        node.type = "DRAG7";
-                    } else if (ui.helper.hasClass("drag8")) {
-                        node.type = "DRAG8";
-                    } else {
-                        return;
-                    }
-                    diagram.push(node);
-                    renderDiagram(diagram);
-                }
-            });
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device-width, initial-scale = 1">
 
-            function renderDiagram(diagram) {
-                canvas.empty();
-                for (var d in diagram) {
-                    var node = diagram[d];
-                    var html = "";
-                    if (node.type === "DRAG1") {
-                        html = "<img src=\"res/alarm.png\">";
-                    } else if (node.type === "DRAG2") {
-                        html = "<img src=\"res/compass.png\">";
-                    } else if (node.type === "DRAG3") {
-                        html = "<img src=\"res/exit.png\">";
-                    } else if (node.type === "DRAG4") {
-                        html = "<img src=\"res/fire.png\">";
-                    } else if (node.type === "DRAG5") {
-                        html = "<img src=\"res/medkit.png\">";
-                    } else if (node.type === "DRAG6") {
-                        html = "<img src=\"res/meeting.png\">";
-                    } else if (node.type === "DRAG7") {
-                        html = "<img src=\"res/telephone.png\">";
-                    } else if (node.type === "DRAG8") {
-                        html = "<img src=\"res/youarehere.png\">";
-                    }
+        <!--Title of the page-->
+        <title>JavaScript Paint App</title>
 
-                    var dom = jQuery(html).css({
-                        "position": "absolute",
-                        "top": node.position.top,
-                        "left": node.position.left
-                    }).draggable({
-                        stop: function(event, ui) {
-                            var id = ui.helper.attr("id");
-                            for (var i in diagram) {
-                                if (diagram[i]._id === id) {
-                                    diagram[i].position.top = ui.position.top;
-                                    diagram[i].position.left = ui.position.left;
-                                }
-                            }
-                        }
-                    }).attr("id", node._id);
-                    canvas.append(dom);
-                }
-            }
-        }
-    </script>
--->
+        <!--Style file is added-->
+        <link rel="stylesheet" type="text/css" href="styles.css">
 
+        <!--Scripts used in the programme-->
+        <script src="jscolor.js"></script>
+        <script src="scripts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    </head>
 
-</head>
-<body>
-<div class="wrapper">
+    <body>
+        <div class="wrapper">
+            <div class="toolbar">
+                <!--Add new images or change the one currently loaded from here-->
 
-    <div class="toolbar">
-        <a href="#" id="save" onclick="SaveImage()"><img src="res/save2.png"></a>
-        <a href="#" id="brush" onclick="ChangeTool('brush')"><img src="res/brush2.png"></a>
-        <a href="#" id="eraser" onclick="ChangeTool('eraser')"><img src="res/eraser.png"></a>
-        <a href="#" id="line" onclick="ChangeTool('line')"><img src="res/line2.png"></a>
-        <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="res/rectangle2.png"></a>
-        <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="res/circle2.png"></a>
+                <!--Standard operations from MS Paint-->
+                <a href="#" id="save" onclick="SaveImage()"><img src="res/save2.png"></a>
+                <a href="#" id="brush" onclick="ChangeTool('brush')"><img src="res/brush2.png"></a>
+                <a href="#" id="eraser" onclick="ChangeTool('eraser')"><img src="res/eraser.png"></a>
+                <a href="#" id="line" onclick="ChangeTool('line')"><img src="res/line2.png"></a>
+                <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="res/rectangle2.png"></a>
+                <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="res/circle2.png"></a>
 
-        <a class="drag drag1" href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
-        <a class="drag drag2" href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
-        <a class="drag drag3" href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
-        <a class="drag drag4" href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
-        <a class="drag drag5" href="#" id="medkitButton" onclick="ChangeTool('medkitButton')"><img id="medkit" src="res/medkit.png"></a>
-        <a class="drag drag6" href="#" id="meetingButton" onclick="ChangeTool('meetingButton')"><img id="meeting" src="res/meeting.png"></a>
-        <a class="drag drag7" href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
-        <a class="drag drag8" href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
-    </div><br>
+                <!--Emergency stuff is here, add delete or change the icons and the id's-->
+                <a  href="#" id="alarmButton" onclick="ChangeTool('alarmButton')"><img id="alarm" src="res/alarm.png"></a>
+                <a  href="#" id="compassButton" onclick="ChangeTool('compassButton')"><img id="compass" src="res/compass.png"></a>
+                <a  href="#" id="exitButton" onclick="ChangeTool('exitButton')"><img id="exit" src="res/exit.png"></a>
+                <a  href="#" id="fireButton" onclick="ChangeTool('fireButton')"><img id="fire" src="res/fire.png"></a>
+                <a  href="#" id="medkitButton" onclick="ChangeTool('medkitButton')"><img id="medkit" src="res/medkit.png"></a>
+                <a  href="#" id="meetingButton" onclick="ChangeTool('meetingButton')"><img id="meeting" src="res/meeting.png"></a>
+                <a  href="#" id="telephoneButton" onclick="ChangeTool('telephoneButton')"><img id="telephone" src="res/telephone.png"></a>
+                <a  href="#" id="youarehereButton" onclick="ChangeTool('youarehereButton')"><img id="youarehere" src="res/youarehere.png"></a>
+            </div><br>
 
-    <canvas class="canvas" id="my-canvas" width="1000" height="600"></canvas>
+            <!--Canvas is created, size of the canvas is subject to change-->
+            <canvas class="canvas" id="my-canvas" width="1000" height="600"></canvas>
 
-    <div id="imageForDownload">
-        <a href="#" id="imageForDownload2" download="plan.png">
-            <button type="button">Download Plan</button>
-        </a>
-    </div>
-    <div>
-        <div class="colors" style="width: 100%">
-            <div class="item" data-color="#ffffff">
-                <button id="button1"  type="button" style="background-color: #ffffff;height:20px;width:8.3%"></button>
+            <!--This is the button to download the plan-->
+            <div id="imageForDownload">
+                <a href="#" id="imageForDownload2" download="plan.png">
+                    <button type="button">Download Plan</button>
+                </a>
             </div>
-            <div class="item" data-color="#000000">
-                <button id="button2"  type="button" style="background-color: #000000;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#ff0000">
-                <button id="button3"  type="button" style="background-color: #ff0000;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#00ff00">
-                <button id="button4"  type="button" style="background-color: #00ff00;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#0000ff">
-                <button id="button5"  type="button" style="background-color: #0000ff;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#00ffff">
-                <button id="button6"  type="button" style="background-color: #00ffff;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#ff00ff">
-                <button id="button7"  type="button" style="background-color: #ff00ff;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#ffff00">
-                <button id="button8"  type="button" style="background-color: #ffff00;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#c46f0f">
-                <button id="button9"  type="button" style="background-color: #c46f0f;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#fd8f27">
-                <button id="button10"  type="button" style="background-color: #fd8f27;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#0099ff">
-                <button id="button11"  type="button" style="background-color: #0099ff;height:20px;width:8.3%"></button>
-            </div>
-            <div class="item" data-color="#ff009d">
-                <button id="button12"  type="button" style="background-color: #ff009d;height:20px;width:8.3%"></button>
-            </div>
-        </div>
-    </div>
 
-    <div>
-        <button onclick="drawRotatedImage()" id="Rotate">Rotate</button>
-    </div>
-</div>
-</body>
+            <!--The colour palette is created in this part, new color can be added however the width have to be readjusted percentage-wise-->
+            <div>
+                <div class="colors" style="width: 100%">
+                    <div class="item" data-color="#ffffff">
+                        <button id="button1"  type="button" style="background-color: #ffffff;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#000000">
+                        <button id="button2"  type="button" style="background-color: #000000;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#ff0000">
+                        <button id="button3"  type="button" style="background-color: #ff0000;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#00ff00">
+                        <button id="button4"  type="button" style="background-color: #00ff00;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#0000ff">
+                        <button id="button5"  type="button" style="background-color: #0000ff;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#00ffff">
+                        <button id="button6"  type="button" style="background-color: #00ffff;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#ff00ff">
+                        <button id="button7"  type="button" style="background-color: #ff00ff;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#ffff00">
+                        <button id="button8"  type="button" style="background-color: #ffff00;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#c46f0f">
+                        <button id="button9"  type="button" style="background-color: #c46f0f;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#fd8f27">
+                        <button id="button10"  type="button" style="background-color: #fd8f27;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#0099ff">
+                        <button id="button11"  type="button" style="background-color: #0099ff;height:20px;width:8.3%"></button>
+                    </div>
+                    <div class="item" data-color="#ff009d">
+                        <button id="button12"  type="button" style="background-color: #ff009d;height:20px;width:8.3%"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!--The rotation button, which will change in a matter of days-->
+            <div>
+                <button onclick="drawRotatedImage()" id="Rotate">Rotate</button>
+            </div>
+
+        </div> <!--Wrapper div ends here -->
+
+    </body>
 </html>
