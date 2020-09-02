@@ -81,50 +81,50 @@ function setupCanvas(){
     //If the colours are to be changed in the future, one must also change
     //the .html file
     document.getElementById("button1").onclick = function(){
-        strokeColor = '#ffffff';
+        strokeColor = '#ffffff'; //white
     }
 
     document.getElementById("button2").onclick = function(){
-        strokeColor = '#000000';
+        strokeColor = '#000000'; //black
     }
 
     document.getElementById("button3").onclick = function(){
-        strokeColor = '#ff0000';
+        strokeColor = '#ff0000'; //red
     }
 
     document.getElementById("button4").onclick = function(){
-        strokeColor = '#00ff00';
+        strokeColor = '#00ff00'; //lime-ish green
     }
 
     document.getElementById("button5").onclick = function(){
-        strokeColor = '#0000ff';
+        strokeColor = '#0000ff'; //dark blue
     }
 
     document.getElementById("button6").onclick = function(){
-        strokeColor = '#00ffff';
+        strokeColor = '#00ffff'; //light blue
     }
 
     document.getElementById("button7").onclick = function(){
-        strokeColor = '#ff00ff';
+        strokeColor = '#ff00ff'; //purple
     }
 
     document.getElementById("button8").onclick = function(){
-        strokeColor = '#ffff00';
+        strokeColor = '#ffff00'; // yellow
     }
 
     document.getElementById("button9").onclick = function(){
-        strokeColor = '#c46f0f';
+        strokeColor = '#c46f0f'; //dark orange
     }
 
     document.getElementById("button10").onclick = function(){
-        strokeColor = '#fd8f27';
+        strokeColor = '#fd8f27'; //regular orange
     }
     document.getElementById("button11").onclick = function(){
-        strokeColor = '#0099ff';
+        strokeColor = '#0099ff'; //blue
     }
 
     document.getElementById("button12").onclick = function(){
-        strokeColor = '#ff009d';
+        strokeColor = '#ff009d'; //pink
     }
 
     //Enables rotations of the images
@@ -134,6 +134,9 @@ function setupCanvas(){
     });
 }
 
+/*
+
+ */
 function ChangeTool(toolClicked){
     document.getElementById("save").className = "";
     document.getElementById("brush").className = "";
@@ -152,6 +155,7 @@ function ChangeTool(toolClicked){
     document.getElementById(toolClicked).className = "selected";
     currentTool = toolClicked;
 }
+
 
 function GetMousePosition(x,y){
     let canvasSizeData = canvas.getBoundingClientRect();
