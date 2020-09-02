@@ -1,3 +1,6 @@
+/*
+Global variables
+*/
 let canvas;
 let context;
 let savedImageData;
@@ -5,17 +8,19 @@ let dragging = false;
 let strokeColor = 'black';
 let eraserColor = 'white';
 let fillColor = 'black';
-let line_Width = 2;
+let line_Width = 2; /* Adjust the width of the strokes in here */
 let currentTool = 'brush';
-let canvasWidth = 1000;
-let canvasHeight = 600;
-let angle = 0;
-
+let canvasWidth = 1000; /* if the canvas width is changed here, it must also be changed in the .html file */
+let canvasHeight = 600; /* if the canvas height is changed here, it must also be changed in the .html file */
+let angle = 0; /* used in drawing rotated images */
 let usingBrush = false;
 let brushXPoints = new Array();
 let brushYPoints = new Array();
 let brushDownPos = new Array();
 
+/*
+This class is used for all the details about measures and shapes.
+ */
 class ShapeBoundingBox{
     constructor(left, top, width, height) {
         this.left = left;
@@ -25,6 +30,9 @@ class ShapeBoundingBox{
     }
 }
 
+/*
+This class tracks down the x and y values of the mouse, used for drawing and many other operations.
+ */
 class MouseDownPos{
     constructor(x,y) {
         this.x = x,
@@ -32,6 +40,9 @@ class MouseDownPos{
     }
 }
 
+/*
+Location class is used for general locations throughout the programme.
+ */
 class Location{
     constructor(x,y) {
         this.x = x,
