@@ -51,21 +51,35 @@ class Location{
 }
 
 
-
+/*
+Creation of the classes mentioned above, these will be used throughout the programme.
+ */
 let shapeBoundingBox = new ShapeBoundingBox(0,0,0,0);
 let mousedown = new MouseDownPos(0,0);
 let loc = new Location(0,0);
 
 document.addEventListener('DOMContentLoaded', setupCanvas);
 
+/*
+This function initialized and starts the creation of every element.
+ */
 function setupCanvas(){
+    //Create canvas
     canvas = document.getElementById('my-canvas');
     context = canvas.getContext('2d');
+
+    //Set the stroke color and line width
     context.strokeStyle = strokeColor;
     context.lineWidth = line_Width;
+
+    //Add the event listeners for the mouse moves
     canvas.addEventListener("mousedown", ReactToMouseDown);
     canvas.addEventListener("mousemove", ReactToMouseMove);
     canvas.addEventListener("mouseup", ReactToMouseUp);
+
+    //The following 12 buttons are the buttons from the colour palette
+    //If the colours are to be changed in the future, one must also change
+    //the .html file
     document.getElementById("button1").onclick = function(){
         strokeColor = '#ffffff';
     }
@@ -113,21 +127,11 @@ function setupCanvas(){
         strokeColor = '#ff009d';
     }
 
-
+    //Enables rotations of the images
     const button = document.getElementById('Rotate');
     button.addEventListener("click", function(){
-        angle = angle + 90;
+        angle = angle + 90; //The angle is set to 90 degrees bu default, it is subject to change
     });
-
-
-    if (currentTool === 'alarm') {
-        let pctrId = currentTool.replace('Button','');
-        $( function() {
-            $( pctrId ).draggable();
-        } );
-    }
-
-
 }
 
 function ChangeTool(toolClicked){
@@ -148,6 +152,7 @@ function ChangeTool(toolClicked){
     document.getElementById(toolClicked).className = "selected";
     currentTool = toolClicked;
 }
+
 function GetMousePosition(x,y){
     let canvasSizeData = canvas.getBoundingClientRect();
     return { x: (x - canvasSizeData.left) * (canvas.width  / canvasSizeData.width),
