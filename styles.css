@@ -1,9 +1,11 @@
+/*Add styling to the wrapper class*/
 .wrapper {
     max-width: 900px;
     margin: auto;
     font-family: "Arial";
 }
 
+/*Add styling to the toolbar class*/
 .toolbar{
     width: 100%;
     background-color: white;
@@ -12,6 +14,7 @@
     z-index: 1000;
 }
 
+/*Add styling to "a"*/
 .toolbar a {
     float: left;
     width: 11%;
@@ -21,19 +24,23 @@
     color: red;
 }
 
+/*Add hover effect*/
 .toolbar a:hover {
     background-color: grey;
 }
 
+/*Colors the selected element in the color specified below (color is subject to change)*/
 .selected {
     background-color: lime;
 }
 
+/*Add styling to the canvas*/
 #my-canvas{
     width: 100%;
     border: 3px solid black;
 }
 
+/*Adjust image sizes*/
 #img-data-div{
     width: 100%;
     max-width: 900px;
@@ -45,6 +52,7 @@
     height:auto;
 }
 
+/*Adjust display stuff about the colour palette*/
 .colors button{
     box-sizing: border-box;
     height:auto;
@@ -54,6 +62,7 @@
     float: left;
 }
 
+/*Delete the right border of the color palette*/
 .colors button:not(:last-child) {
     border-right: none;
 }
